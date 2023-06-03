@@ -6,6 +6,8 @@ As a network engineer who is learning Python programming, I often encounter situ
 
 The script utilizes the Netmiko library to establish SSH connections to network devices and retrieve interface information by using Cisco CLI commands. It analyzes the last input value (from the 'sh int' command) of each not connected interface and identifies those that have not received any input for at least 3 weeks. The results are then written to a text file for further action.
 
+Please feel free to use and modify this script according to your specific needs. As I'm a beginner in Python, if you encounter any issues or have suggestions for improvements, please don't hesitate to reach out.
+
 ## Installation
 
 To run the script, please install the following dependencies unsing pip :
@@ -28,9 +30,3 @@ Before running the script, make sure to replace the following placeholders :
 
 - 'insert_username' : replace with the username of an account with privileged EXEC mode access
 - 'insert_password' : replace with the username's password
-
-## Conclucion
-
-Please feel free to use and modify this script according to your specific needs. As I'm a beginner in Python, if you encounter any issues or have suggestions for improvements, please don't hesitate to reach out.
-
-Happy cable management !
