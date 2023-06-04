@@ -2,17 +2,17 @@ devices:
   - name: insert_switch_name
     ip: insert_ip
     device_type: cisco_ios
-    username: USER_CONSTANT
+    username: USERNAME_CONSTANT
     password: PASSWORD_CONSTANT
 
   - name: insert_switch_name
     ip: insert_ip
     device_type: cisco_ios
-    username: USER_CONSTANT
+    username: USERNAME_CONSTANT
     password: PASSWORD_CONSTANT
 
   - name: insert_switch_name
     ip: insert_ip
     device_type: cisco_ios
-    username: USER_CONSTANT
+    username: USERNAME_CONSTANT
     password: PASSWORD_CONSTANT
