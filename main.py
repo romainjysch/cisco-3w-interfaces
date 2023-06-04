@@ -6,9 +6,6 @@ import netmiko
 import logging
 import datetime
 
-USER = "insert_username"
-PASSWORD = "insert_password"
-
 
 def logs_configuration():
     try:
@@ -30,13 +27,22 @@ def logs_configuration():
         sys.exit()
 
 
-def get_csr_devices(user, password):
+def get_username():
+    return input("Enter a username with privileged EXEC mode access : ")
+
+
+def get_password():
+    return input("Enter the username's password : ")
+
+
+
+def get_csr_devices(username, password):
     try:
         # Read the YAML config file :
         with open("csr.yaml") as file:
             content = file.read()
         # Replace constants with username and password :
-        content = content.replace("USER_CONSTANT", user).replace("PASSWORD_CONSTANT", password)
+        content = content.replace("USERNAME_CONSTANT", username).replace("PASSWORD_CONSTANT", password)
         # Load CSR from the YAML config file :
         config = yaml.safe_load(content)
         # Return all CSR devices :
@@ -60,13 +66,13 @@ def launch_analysises(devices):
     print("Script ending...")
 
 
-def perform_analysis(ip, user, password, file):
+def perform_analysis(ip, username, password, file):
     try:
         # Create the CSR object using the dictionnary :
         csr = {
             'device_type': 'cisco_ios',
             'ip': ip,
-            'username': user,
+            'username': username,
             'password': password,
         }
         # Establish the SSH connection :
@@ -133,7 +139,7 @@ def create_filename():
 
 def main():
     logs_configuration()
-    devices = get_csr_devices(user=USER, password=PASSWORD)
+    devices = get_csr_devices(username=get_username(), password=get_password())
     launch_analysises(devices)
 
 
