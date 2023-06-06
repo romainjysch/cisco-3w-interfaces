@@ -10,7 +10,7 @@ import datetime
 def logs_configuration():
     try:
         # Get the absolut path to the logs folder :
-        log_directory = os.path.abspath("logs")
+        log_directory = os.path.abspath("../logs")
         # If logs folder does not exist, create it :
         if not os.path.exists(log_directory):
             os.makedirs(log_directory)
@@ -33,7 +33,6 @@ def get_username():
 
 def get_password():
     return input("Enter the username's password : ")
-
 
 
 def get_csr_devices(username, password):
@@ -125,7 +124,7 @@ def create_filename():
         # Get the absolut path to the current file :
         current_directory = os.path.dirname(os.path.abspath(__file__))
         # Alter the path in order to include a new directory for the txt files :
-        files_directory = os.path.join(current_directory, "files")
+        files_directory = os.path.join(current_directory, "../files")
         # If files directory does not exist, create it :
         if not os.path.exists(files_directory):
             os.makedirs(files_directory)
@@ -135,13 +134,3 @@ def create_filename():
     except Exception as e:
         logging.error(f"A problem has occured : {e}")
         sys.exit()
-
-
-def main():
-    logs_configuration()
-    devices = get_csr_devices(username=get_username(), password=get_password())
-    launch_analysises(devices)
-
-
-if __name__ == "__main__":
-    main()

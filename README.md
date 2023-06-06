@@ -25,8 +25,3 @@ Before running the script, make sure to replace the following placeholders :
 
 - 'insert_switch_name' : replace with the name of the switch
 - 'insert_ip' : replace with the IP address or FQDN
-
-### Python Script (main.py)
-
-- 'insert_username' : replace with the username of an account with privileged EXEC mode access
-- 'insert_password' : replace with the username's password
