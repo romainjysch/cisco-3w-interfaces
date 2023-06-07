@@ -10,7 +10,7 @@ import datetime
 def logs_configuration():
     try:
         # Get the absolut path to the logs folder :
-        log_directory = os.path.abspath("logs")
+        log_directory = os.path.abspath("./logs")
         # If logs folder does not exist, create it :
         if not os.path.exists(log_directory):
             os.makedirs(log_directory)
@@ -35,11 +35,12 @@ def get_password():
     return input("Enter the username's password : ")
 
 
-
 def get_csr_devices(username, password):
     try:
         # Read the YAML config file :
-        with open("csr.yaml") as file:
+        current_directory = os.path.dirname(os.path.abspath(__file__))
+        yaml_file_path = os.path.join(current_directory, "csr.yaml")
+        with open(yaml_file_path) as file:
             content = file.read()
         # Replace constants with username and password :
         content = content.replace("USERNAME_CONSTANT", username).replace("PASSWORD_CONSTANT", password)
@@ -109,7 +110,7 @@ def get_last_input_value(connection, interface_name):
         match = re.search(r'(\d+)w', last_input_value)
         if match:
             value = int(match.group(1))
-            if value >= 3:
+            if value >= 4:
                 return last_input_value
             else:
                 return "not_applicable"
@@ -123,7 +124,7 @@ def get_last_input_value(connection, interface_name):
 def create_filename():
     try:
         # Get the absolut path to the current file :
-        current_directory = os.path.dirname(os.path.abspath(__file__))
+        current_directory = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
         # Alter the path in order to include a new directory for the txt files :
         files_directory = os.path.join(current_directory, "files")
         # If files directory does not exist, create it :
@@ -135,13 +136,3 @@ def create_filename():
     except Exception as e:
         logging.error(f"A problem has occured : {e}")
         sys.exit()
-
-
-def main():
-    logs_configuration()
-    devices = get_csr_devices(username=get_username(), password=get_password())
-    launch_analysises(devices)
-
-
-if __name__ == "__main__":
-    main()
