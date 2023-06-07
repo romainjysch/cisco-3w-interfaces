@@ -10,7 +10,7 @@ import datetime
 def logs_configuration():
     try:
         # Get the absolut path to the logs folder :
-        log_directory = os.path.abspath("../logs")
+        log_directory = os.path.abspath("./logs")
         # If logs folder does not exist, create it :
         if not os.path.exists(log_directory):
             os.makedirs(log_directory)
@@ -38,7 +38,9 @@ def get_password():
 def get_csr_devices(username, password):
     try:
         # Read the YAML config file :
-        with open("csr.yaml") as file:
+        current_directory = os.path.dirname(os.path.abspath(__file__))
+        yaml_file_path = os.path.join(current_directory, "csr-hep.yaml")
+        with open(yaml_file_path) as file:
             content = file.read()
         # Replace constants with username and password :
         content = content.replace("USERNAME_CONSTANT", username).replace("PASSWORD_CONSTANT", password)
@@ -122,9 +124,9 @@ def get_last_input_value(connection, interface_name):
 def create_filename():
     try:
         # Get the absolut path to the current file :
-        current_directory = os.path.dirname(os.path.abspath(__file__))
+        current_directory = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
         # Alter the path in order to include a new directory for the txt files :
-        files_directory = os.path.join(current_directory, "../files")
+        files_directory = os.path.join(current_directory, "files")
         # If files directory does not exist, create it :
         if not os.path.exists(files_directory):
             os.makedirs(files_directory)
