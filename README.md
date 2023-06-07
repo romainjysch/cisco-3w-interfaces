@@ -6,8 +6,6 @@ As a network engineer who is learning Python programming, I often encounter situ
 
 The script utilizes the Netmiko library to establish SSH connections to network devices and retrieve interface information by using Cisco CLI commands. It analyzes the last input value (from the 'sh int' command) of each not connected interface and identifies those that have not received any input for at least 3 weeks. The results are then written to a text file for further action.
 
-Please feel free to use and modify this script according to your specific needs. As I'm a beginner in Python, if you encounter any issues or have suggestions for improvements, please don't hesitate to reach out.
-
 ## Installation
 
 To run the script, please install the following dependencies unsing pip :
@@ -19,9 +17,14 @@ pip install pyyaml
 
 ## Usage
 
-Before running the script, make sure to replace the following placeholders :
+### YAML Configuration (csr.yaml)
 
-### YAML Configuration (car.yaml)
+Before running the script, make sure to replace the following placeholders :
 
 - 'insert_switch_name' : replace with the name of the switch
 - 'insert_ip' : replace with the IP address or FQDN
+
+### When running
+
+- When running, the script will ask you to enter a username with privileged EXEC mode access on switches
+- The script will also ask you to enter the username's password
