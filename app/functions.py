@@ -4,6 +4,7 @@ import sys
 import yaml
 import netmiko
 import logging
+import getpass
 import datetime
 
 
@@ -27,19 +28,17 @@ def logs_configuration():
         sys.exit()
 
 
-def get_username():
-    return input("Enter a username with privileged EXEC mode access : ")
+def get_username(): return input("Enter a username with privileged EXEC mode access : ")
 
 
-def get_password():
-    return input("Enter the username's password : ")
+def get_password(): return getpass.getpass("Enter the username's password: ")
 
 
 def get_csr_devices(username, password):
     try:
         # Read the YAML config file :
         current_directory = os.path.dirname(os.path.abspath(__file__))
-        yaml_file_path = os.path.join(current_directory, "csr.yaml")
+        yaml_file_path = os.path.join(current_directory, "csr-hep.yaml")
         with open(yaml_file_path) as file:
             content = file.read()
         # Replace constants with username and password :
@@ -110,7 +109,7 @@ def get_last_input_value(connection, interface_name):
         match = re.search(r'(\d+)w', last_input_value)
         if match:
             value = int(match.group(1))
-            if value >= 4:
+            if value >= 3:
                 return last_input_value
             else:
                 return "not_applicable"
