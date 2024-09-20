@@ -8,21 +8,51 @@ The script utilizes the Netmiko library to establish SSH connections to network 
 
 ## Installation
 
-To run the script, please install the following dependencies unsing pip :
+To run the script, please install a virtual env and the required deps :
 
 ```
-pip install netmiko
-pip install pyyaml
+cd /path/to/the/project
+rm -rf .venv
+python3 -m venv .venv
+source .venv/bin/activate
+pip install -r requirements.txt
+```
+
+If Python is not installed :
+
+```
+brew install python
+```
+
+If Homebrew is not installed :
+
+```
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+brew install python
+```
+
+If permissions need to be updated :
+
+```
+chmod -R 755 /path/to/the/project
 ```
 
 ## Usage
 
 ### YAML Configuration (csr.yaml)
 
-Before running the script, make sure to replace the following placeholders :
+Before running the script, make sure to replace the following placeholders (normally correct for HEP-VD usage ins csr-hep.yaml) :
 
 - 'insert_switch_name' : replace with the name of the switch
 - 'insert_ip' : replace with the IP address or FQDN
+
+### Run
+
+```
+cd /path/to/the/project
+source .venv/bin/activate
+python app/main.py
+```
 
 ### When running
 
